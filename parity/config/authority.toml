@@ -19,3 +19,4 @@ password = ["/parity/authority.pwd"]
 
 [mining]
 reseal_on_txs = "none"
+usd_per_tx = "0"
