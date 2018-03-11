@@ -4,7 +4,8 @@ services:
     image: parity/parity:${PARITY_VERSION}
     command:
       --config /parity/config/authority.toml
-      --engine-signer 0x00bd138abd70e2f00903268f3db08f2d25677c9e
+      --engine-signer 0x00bd138abd70e2f00903268f3db08f2d25677c9e 
+      --usd-per-tx 0
     volumes:
       - ./parity/config:/parity/config:ro
       - authority0:/root/.local/share/io.parity.ethereum/
@@ -21,7 +22,8 @@ services:
     image: parity/parity:${PARITY_VERSION}
     command:
       --config /parity/config/authority.toml
-      --engine-signer 0x00aa39d30f0d20ff03a22ccfc30b7efbfca597c2
+      --engine-signer 0x00aa39d30f0d20ff03a22ccfc30b7efbfca597c2 
+      --usd-per-tx 0
     volumes:
       - ./parity/config:/parity/config:ro
       - authority1:/root/.local/share/io.parity.ethereum/
@@ -37,7 +39,8 @@ services:
     image: parity/parity:${PARITY_VERSION}
     command:
       --config /parity/config/authority.toml
-      --engine-signer 0x002e28950558fbede1a9675cb113f0bd20912019
+      --engine-signer 0x002e28950558fbede1a9675cb113f0bd20912019 
+      --usd-per-tx 0
     volumes:
       - ./parity/config:/parity/config:ro
       - authority2:/root/.local/share/io.parity.ethereum/
@@ -50,8 +53,12 @@ services:
 
   member0:
     image: parity/parity:${PARITY_VERSION}
-    command: --config /parity/config/member.toml --ui-no-validation ui
+    command: 
+      --config /parity/config/member.toml 
+      --ui-no-validation ui
+    #  --base-path /root/.local/share/io.parity.ethereum/
     volumes:
+      - ~/.local/share/io.parity.ethereum/docker/:/root/.local/share/io.parity.ethereum/
       - ./parity/config:/parity/config:ro
       - ./parity/keys:/root/.local/share/io.parity.ethereum/keys/${NETWORK_NAME}
     ports:
@@ -65,24 +72,24 @@ services:
         ipv4_address: 172.16.0.20
 
 
-  member1:
-    image: parity/parity:${PARITY_VERSION}
-    command: --config /parity/config/member.toml
-    volumes:
-      - ./parity/config:/parity/config:ro
-    networks:
-      app_net:
-        ipv4_address: 172.16.0.21
+  # member1:
+  #   image: parity/parity:${PARITY_VERSION}
+  #   command: --config /parity/config/member.toml
+  #   volumes:
+  #     - ./parity/config:/parity/config:ro
+  #   networks:
+  #     app_net:
+  #       ipv4_address: 172.16.0.21
 
 
-  member2:
-    image: parity/parity:${PARITY_VERSION}
-    command: --config /parity/config/member.toml
-    volumes:
-      - ./parity/config:/parity/config:ro
-    networks:
-      app_net:
-        ipv4_address: 172.16.0.22
+  # member2:
+  #   image: parity/parity:${PARITY_VERSION}
+  #   command: --config /parity/config/member.toml
+  #   volumes:
+  #     - ./parity/config:/parity/config:ro
+  #   networks:
+  #     app_net:
+  #       ipv4_address: 172.16.0.22
 
 
   monitor:
