@@ -3,7 +3,7 @@ chain = "/parity/config/chain.json"
 
 [rpc]
 interface = "0.0.0.0"
-cors = "all"
+cors = ["all"]
 hosts = ["all"]
 apis = ["web3", "eth", "net", "parity", "traces", "rpc", "personal", "parity_accounts", "signer", "parity_set"]
 
@@ -21,6 +21,6 @@ interface = "0.0.0.0"
 disable = false
 port = 8546
 interface = "all"
-origins = ["http://127.0.0.1:8180"]
+origins = ["all"]
 apis = ["web3", "eth", "net", "parity", "traces", "rpc", "secretstore"]
 hosts = ["all"]
